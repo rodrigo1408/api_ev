@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegenerativeBrakingService {
-	
+
 	@Autowired
 	private BatteryService batt;
-	
-	public void applyRegenerativeBraking(double brakingForce) {
+
+	public void applyRegenerativeBraking(double brakingForce) { 
 		double regeneration = brakingForce * 0.1;
 		batt.rechargeBattery(regeneration);
 	}
-	
+
 }

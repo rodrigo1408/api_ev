@@ -13,15 +13,19 @@ public class DrivingModeService {
 		this.currentMode = DrivingMode.NORMAL;
 	}
 
+	public void setDrivingMode(DrivingMode mode) {
+		this.currentMode = mode;
+	}
+
 	public double adjustPowerByMode(double basePower) {
 		switch (currentMode) {
-			case ECO:
-				return basePower * 0.7;
-			case SPORT:
-				return basePower * 1.2;
-			case NORMAL:
-			default:
-				return basePower;
+		case ECO:
+			return basePower * 0.7;
+		case SPORT:
+			return basePower * 1.2;
+		case NORMAL:
+		default:
+			return basePower;
 		}
 	}
 }

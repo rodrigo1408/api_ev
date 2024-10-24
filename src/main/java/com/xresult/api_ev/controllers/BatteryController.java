@@ -1,5 +1,9 @@
 package com.xresult.api_ev.controllers;
 
+import java.util.Locale;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +18,8 @@ import com.xresult.api_ev.services.BatteryService;
 @RequestMapping("/api")
 public class BatteryController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(BatteryController.class);
+	
 	@Autowired
 	private BatteryService batt;
 	
@@ -24,14 +30,21 @@ public class BatteryController {
 	
 	@PostMapping("/battery/recharge")
 	public String rechargeBattery(@RequestParam double amount) {
-		batt.rechargeBattery(amount);
-		return "Battery recharged by " + amount + "%.";
+		batt.rechargeBattery(amount); 
+		
+		String message = String.format(Locale.US, "Battery recharged by %.2f%%.", amount);
+	    logger.info(message);
+	    
+	    return message;
 	}
 	
 	@PostMapping("/battery/discharge")
 	public String dischargeBattery(@RequestParam double amount) {
 		batt.dischargeBattery(amount);
-		return "Battery discharged by " + amount + "%.";
+		String message = String.format(Locale.US, "Battery discharged by %.2f%%.", amount);
+	    logger.info(message);
+	    
+	    return message;
 	}
 	
 }
