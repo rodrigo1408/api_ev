@@ -25,13 +25,18 @@ public class BatteryController {
 	
 	@GetMapping("/battery/status")
 	public Battery getBatteryStatus() {
+		String message = String.format("Status battery: " 
+				+ " Voltage: " + batt.getBatteryStatus().getVoltage()
+				+ " Current: " + batt.getBatteryStatus().getCurrent() 
+				+ " ChargeLevel: " + batt.getBatteryStatus().getChargeLevel());
+		logger.info(message);
+		
 		return batt.getBatteryStatus();
 	}
 	
 	@PostMapping("/battery/recharge")
 	public String rechargeBattery(@RequestParam double amount) {
-		batt.rechargeBattery(amount); 
-		
+		batt.rechargeBattery(amount);
 		String message = String.format(Locale.US, "Battery recharged by %.2f%%.", amount);
 	    logger.info(message);
 	    

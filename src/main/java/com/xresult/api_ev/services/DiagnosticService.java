@@ -1,5 +1,6 @@
 package com.xresult.api_ev.services;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +20,25 @@ public class DiagnosticService {
 	public String perfomDiagnostics() {
 		StringBuilder diagnosticReport = new StringBuilder();
 		
-		if(batt.getBatteryStatus().getChargeLevel() < 20.0) {
-			logger.info("Alerta: Bateria com carga baixa!\n");
-			diagnosticReport.append("Alerta: Bateria com carga baixa!\n");
+		if(batt.getBatteryStatus().getChargeLevel() < 20.0) { 
+			String message = String.format("Alert: Low battery down!");
+		    logger.info(message);
+		    
+		    return message;
 		}
 		
 		if(!temp.isSafeTemperature()) {
-			logger.info("Alerta: Sistema superaquecido!\n");
-			diagnosticReport.append("Alerta: Sistema superaquecido!\n");
+			String message = String.format("Alert: Overheating system!");
+			logger.info(message);
+			
+			return(message);
 		}
 		
 		if(diagnosticReport.length() == 0) {
-			logger.info("Sistema funcionando normalmente.");
-			diagnosticReport.append("Sistema funcionando normalmente.");
+			String message = String.format("System working normally.");
+			logger.info(message);
+			
+			return(message);
 		}
 		
 		return diagnosticReport.toString();
