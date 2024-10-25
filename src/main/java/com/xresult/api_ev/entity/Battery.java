@@ -1,24 +1,15 @@
 package com.xresult.api_ev.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "battery")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Battery {
-	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
-	
+public class Battery { 
 	private double voltage;
 	private double current;
 	private double chargeLevel;
